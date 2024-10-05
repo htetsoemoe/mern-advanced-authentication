@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import path from 'path'
+import { connectDB } from './db/connectDB.js'
 
 dotenv.config()
 
@@ -28,5 +29,6 @@ app.get("/", (req, res) => {
 })
 
 app.listen(PORT, () => {
+    connectDB()
     console.log(`Server is running on port: ${PORT}`)
 })
