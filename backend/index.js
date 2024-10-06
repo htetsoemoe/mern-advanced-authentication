@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import path from 'path'
 import { connectDB } from './db/connectDB.js'
 import authRouter from './routes/auth.route.js'
+import { validateRequest } from './utils/index.js'
 
 dotenv.config()
 
@@ -27,9 +28,7 @@ if (process.env.NODE_ENV === "production") {
     })
 }
 
-app.get("/", (req, res) => {
-    res.send("Hello from advanced authentication project!")
-})
+app.use(validateRequest)
 
 app.listen(PORT, () => {
     connectDB()
